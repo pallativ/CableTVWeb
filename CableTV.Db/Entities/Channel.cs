@@ -1,7 +1,10 @@
-﻿namespace CableTV.Db
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CableTV.Db
 {
     public class Channel
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string ChannelName { get; set; }
         public Language Language { get; set; }
