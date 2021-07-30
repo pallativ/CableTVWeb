@@ -15,9 +15,6 @@ namespace CableTVWeb.Controllers
         {
 
         }
-        public async Task<IActionResult> GetAll()
-        {
-
-        }
+      
     }
 }

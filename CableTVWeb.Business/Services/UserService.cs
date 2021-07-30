@@ -11,6 +11,11 @@ namespace CableTVWeb.Business
             throw new System.NotImplementedException();
         }
 
+        public Task<User> GetByMobile(string mobile)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task<User> GetByUserId(string userId)
         {
             throw new System.NotImplementedException();
