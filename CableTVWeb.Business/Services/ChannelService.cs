@@ -23,14 +23,17 @@ namespace CableTVWeb.Business
             await _dbContext.SaveChangesAsync();
             return channel;
         }
+
         public Task<Channel> GetById(int channelId)
         {
             return _dbContext.Channels.FirstOrDefaultAsync(t => t.Id == channelId);
         }
+
         public Task<bool> IsExists(Expression<Func<Channel, bool>> predicate)
         {
             return _dbContext.Channels.AnyAsync(predicate);
         }
+
         public async Task Delete(int channelId)
         {
             var channel = await GetById(channelId);
@@ -38,9 +41,9 @@ namespace CableTVWeb.Business
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Channel>> GetAll()
+        public async Task<IEnumerable<Channel>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Channels.ToListAsync();
         }
 
         public Task<IEnumerable<Channel>> GetBy(Language language)
