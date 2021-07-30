@@ -1,14 +1,11 @@
+using CableTV.Db;
 using CableTVWeb.Business;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CableTVWeb
 {
@@ -25,6 +22,10 @@ namespace CableTVWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllersWithViews();
+            services.AddDbContext<CableTVDbContext>(options => options.UseInMemoryDatabase("CableTvWeb"));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddTransient<IChannelPackageService, ChannelPackageService>();
             services.AddTransient<IChannelService, ChannelService>();
         }
 
@@ -52,6 +53,9 @@ namespace CableTVWeb
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

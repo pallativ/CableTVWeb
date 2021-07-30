@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CableTVWeb.Business;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,14 +8,21 @@ using System.Threading.Tasks;
 
 namespace CableTVWeb.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/channel")]
     [ApiController]
     public class ChannelsController : ControllerBase
     {
-        public ChannelsController()
-        {
+        private readonly IChannelService _channelService;
 
+        public ChannelsController(IChannelService channelService)
+        {
+            _channelService = channelService;
         }
-      
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return await Task.FromResult(Ok("Success from controllers"));
+        }
     }
 }
