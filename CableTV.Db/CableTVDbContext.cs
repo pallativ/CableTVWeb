@@ -9,7 +9,7 @@ namespace CableTV.Db
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<Channel> Channels { get; set; }
         public DbSet<ChannelPackage> ChannelPackages { get; set; }
         public DbSet<ChannelPackageItem> ChannelPackageItems { get; set; }
