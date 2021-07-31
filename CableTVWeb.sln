@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CableTV.Db", "CableTV.Db\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableTVWeb.Business", "CableTVWeb.Business\CableTVWeb.Business.csproj", "{6005191D-0500-4BD3-9E9A-9C6E110E3276}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableTVWeb.Tests", "CableTVWeb.Tests\CableTVWeb.Tests.csproj", "{8E3CCC63-662D-4158-ACA3-13560DBAAF65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6005191D-0500-4BD3-9E9A-9C6E110E3276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6005191D-0500-4BD3-9E9A-9C6E110E3276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6005191D-0500-4BD3-9E9A-9C6E110E3276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3CCC63-662D-4158-ACA3-13560DBAAF65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3CCC63-662D-4158-ACA3-13560DBAAF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3CCC63-662D-4158-ACA3-13560DBAAF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3CCC63-662D-4158-ACA3-13560DBAAF65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
