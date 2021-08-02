@@ -32,14 +32,23 @@ namespace CableTVWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateChannelModel model)
         {
-            var channel =  converter.ToModel(model);
+            var channel = converter.ToEntity(model);
             channel = await _channelService.Add(channel);
             return Created("", channel);
         }
+
+        [HttpGet("/{laungageId}")]
+        public async Task<IActionResult> Get(int laungageId)
+        {
+            var channels = await _channelService.GetBy((Language)laungageId);
+            var models = channels.Select(t => converter.ToModel(t));
+            return Ok(models);
+        }
     }
 
-    public interface IModelConverter<TModel,TEntity>
+    public interface IModelConverter<TModel, TEntity>
     {
-        TEntity ToModel(TModel model);
+        TEntity ToEntity(TModel model);
+        TModel ToModel(TEntity entity);
     }
 }
