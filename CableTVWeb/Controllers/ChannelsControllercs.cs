@@ -14,18 +14,12 @@ namespace CableTVWeb.Controllers
     public class ChannelsController : ControllerBase
     {
         private readonly IChannelService _channelService;
+        private readonly IModelConverter<CreateChannelModel, Channel> converter;
 
-        public ChannelsController(IChannelService channelService)
+        public ChannelsController(IChannelService channelService, IModelConverter<CreateChannelModel, Channel> converter)
         {
             _channelService = channelService;
-            var channel = _channelService.Add(new Channel()
-            {
-                ChannelName = "TV",
-                ChannelNumber = 1,
-                Language = Language.Telugu,
-                Price = 10
-            }).Result;
-
+            this.converter = converter;
         }
 
         [HttpGet]
@@ -35,11 +29,17 @@ namespace CableTVWeb.Controllers
             return Ok(items);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CreateChannelModel model)
-        //{
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateChannelModel model)
+        {
+            var channel =  converter.ToModel(model);
+            channel = await _channelService.Add(channel);
+            return Created("", channel);
+        }
+    }
 
-        //    return Created("", channel);
-        //}
+    public interface IModelConverter<TModel,TEntity>
+    {
+        TEntity ToModel(TModel model);
     }
 }
