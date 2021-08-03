@@ -60,5 +60,10 @@ namespace CableTVWeb.Business
         {
             throw new NotImplementedException();
         }
+
+        public Task<Channel> Update(Channel channel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CableTVWeb.Controllers
 {
-    public class CreateChannelModel
+    public class ChannelModel
     {
         [Required]
         public string Name { get; set; }

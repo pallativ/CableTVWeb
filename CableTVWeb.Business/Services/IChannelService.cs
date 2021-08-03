@@ -9,6 +9,8 @@ namespace CableTVWeb.Business
         Task<IEnumerable<Channel>> GetAll();
         Task<IEnumerable<Channel>> GetBy(Language language);
         Task<Channel> GetBy(string name);
+        Task<Channel> GetById(int id);
+        Task<Channel> Update(Channel channel);
         Task<Channel> Add(Channel channel);
         Task Delete(int channelId);
         Task<IEnumerable<Channel>> GetByUserId(string userId);
