@@ -24,4 +24,8 @@
     <ProjectReference Include="..\CableTVWeb.Business\CableTVWeb.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

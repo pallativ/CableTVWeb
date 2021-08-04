@@ -3,7 +3,7 @@ using CableTV.Db;
 using CableTVWeb.Controllers;
 using System;
 
-namespace CableTVWeb.Services
+namespace CableTVWeb.Mappers
 {
     public class ChannelMapperService : IChannelMapperService
     {
