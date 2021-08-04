@@ -1,4 +1,5 @@
 ﻿using CableTV.Db;
+using CableTVWeb.Business.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,9 @@ namespace CableTVWeb.Business
         }
         public async Task<Channel> Add(Channel channel)
         {
+            var isAlredyExists = await IsExists((t) => t.ChannelName == channel.ChannelName);
+            if (isAlredyExists)
+                throw new ResourceConflictException();
             _dbContext.Channels.Add(channel);
             await _dbContext.SaveChangesAsync();
             return channel;
