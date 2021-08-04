@@ -1,5 +1,6 @@
 using CableTV.Db;
 using CableTVWeb.Business;
+using CableTVWeb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace CableTVWeb
             services.AddDbContext<CableTVDbContext>(options => options.UseInMemoryDatabase("CableTvWeb"));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddTransient<IChannelPackageService, ChannelPackageService>();
+            services.AddTransient<IChannelMapperService, ChannelMapperService>();
             services.AddTransient<IChannelService, ChannelService>();
         }
 

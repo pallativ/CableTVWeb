@@ -1,6 +1,6 @@
 ﻿namespace CableTVWeb.Controllers
 {
-    public interface IModelConverter<TModel, TEntity>
+    public interface IModelMapperService<TModel, TEntity>
     {
         TEntity ToEntity(TModel model);
         TModel ToModel(TEntity entity);

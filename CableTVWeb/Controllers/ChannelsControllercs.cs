@@ -1,5 +1,6 @@
 ﻿using CableTV.Db;
 using CableTVWeb.Business;
+using CableTVWeb.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,12 +15,12 @@ namespace CableTVWeb.Controllers
     public class ChannelsController : ControllerBase
     {
         private readonly IChannelService _channelService;
-        private readonly IModelConverter<ChannelModel, Channel> converter;
+        private readonly IChannelMapperService _mapperServce;
 
-        public ChannelsController(IChannelService channelService, IModelConverter<ChannelModel, Channel> converter)
+        public ChannelsController(IChannelService channelService, IChannelMapperService mapperService)
         {
             _channelService = channelService;
-            this.converter = converter;
+            _mapperServce = mapperService;
         }
 
         [HttpGet]
@@ -32,7 +33,7 @@ namespace CableTVWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ChannelModel model)
         {
-            var channel = converter.ToEntity(model);
+            var channel = _mapperServce.ToEntity(model);
             channel = await _channelService.Add(channel);
             return Created("", channel);
         }
@@ -43,7 +44,7 @@ namespace CableTVWeb.Controllers
             var channel = await _channelService.GetById(model.ChannelNumber);
             if (channel == null)
                 return NotFound();
-            channel = converter.ToEntity(model);
+            channel = _mapperServce.ToEntity(model);
             channel = await _channelService.Update(channel);
             return Ok(channel);
         }
@@ -52,7 +53,7 @@ namespace CableTVWeb.Controllers
         public async Task<IActionResult> Get(int laungageId)
         {
             var channels = await _channelService.GetBy((Language)laungageId);
-            var models = channels.Select(t => converter.ToModel(t));
+            var models = channels.Select(t => _mapperServce.ToModel(t));
             return Ok(models);
         }
     }
