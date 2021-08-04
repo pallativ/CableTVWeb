@@ -1,4 +1,5 @@
-﻿using CableTV.Db;
+﻿using AutoMapper;
+using CableTV.Db;
 using CableTVWeb.Controllers;
 using System;
 
@@ -6,21 +7,20 @@ namespace CableTVWeb.Services
 {
     public class ChannelMapperService : IChannelMapperService
     {
+        private readonly IMapper _mapper;
+
+        public ChannelMapperService(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
         public Channel ToEntity(ChannelModel model)
         {
-            var channel = new Channel()
-            {
-                Id = model.ChannelNumber,
-                ChannelName = model.Name,
-                Language = model.Language,
-                Price = model.Price
-            };
-            return channel;
+            return _mapper.Map<Channel>(model);
         }
 
         public ChannelModel ToModel(Channel entity)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<ChannelModel>(entity);
         }
     }
 }
