@@ -41,7 +41,7 @@ namespace CableTVWeb.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(ChannelModel model)
         {
-            var channel = await _channelService.GetById(model.ChannelNumber);
+            var channel = await _channelService.GetById(model.Id);
             if (channel == null)
                 return NotFound();
             channel = _mapperServce.ToEntity(model);

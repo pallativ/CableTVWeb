@@ -8,7 +8,7 @@ namespace CableTVWeb.Controllers
         [Required]
         public string Name { get; set; }
         [Required]
-        public int ChannelNumber { get; set; }
+        public int Id { get; set; }
         [Required]
         public decimal Price { get; set; }
         [Required]

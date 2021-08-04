@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json;
 
 namespace CableTVWeb
 {
@@ -24,7 +25,11 @@ namespace CableTVWeb
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddRazorPages();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                    .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                    });
             services.AddDbContext<CableTVDbContext>(options => options.UseInMemoryDatabase("CableTvWeb"));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddTransient<IChannelPackageService, ChannelPackageService>();

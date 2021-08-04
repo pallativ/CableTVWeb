@@ -20,7 +20,7 @@ namespace CableTVWeb.Business
         }
         public async Task<Channel> Add(Channel channel)
         {
-            var isAlredyExists = await IsExists((t) => t.ChannelName == channel.ChannelName);
+            var isAlredyExists = await IsExists((t) => t.Name == channel.Name);
             if (isAlredyExists)
                 throw new ResourceConflictException();
             _dbContext.Channels.Add(channel);

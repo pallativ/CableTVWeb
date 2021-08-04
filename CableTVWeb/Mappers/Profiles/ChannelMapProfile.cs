@@ -9,11 +9,11 @@ namespace CableTVWeb.Mappers.Profiles
         public ChannelMapProfile()
         {
             CreateMap<Channel, ChannelModel>()
-                .ForMember(t => t.ChannelNumber, options => options.MapFrom(src => src.Id));
+                .ForMember(t => t.Id, options => options.MapFrom(src => src.Id));
 
             CreateMap<ChannelModel, Channel>()
-              .ForMember(t => t.Id, options => options.MapFrom(src => src.ChannelNumber))
-              .ForMember(t => t.ChannelName, options => options.MapFrom(src => src.Name));
+              .ForMember(t => t.Id, options => options.MapFrom(src => src.Id))
+              .ForMember(t => t.Name, options => options.MapFrom(src => src.Name));
         }
     }
 }
