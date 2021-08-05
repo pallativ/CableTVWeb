@@ -56,5 +56,14 @@ namespace CableTVWeb.Controllers
             var models = channels.Select(t => _mapperServce.ToModel(t));
             return Ok(models);
         }
+
+        [HttpGet("/{Id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var channel = await _channelService.GetById(id);
+            if (channel == null)
+                return NotFound();
+            return Ok(_mapperServce.ToModel(channel));
+        }
     }
 }
