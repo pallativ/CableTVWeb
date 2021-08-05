@@ -46,6 +46,13 @@ namespace CableTVWeb.Controllers
             return Ok(channel);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _channelService.Delete(id);
+            return Ok();
+        }
+
         [HttpGet("/{laungageId}")]
         public async Task<IActionResult> Get(int laungageId)
         {

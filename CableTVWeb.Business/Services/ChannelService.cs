@@ -41,6 +41,8 @@ namespace CableTVWeb.Business
         public async Task Delete(int channelId)
         {
             var channel = await GetById(channelId);
+            if (channel == null)
+                throw new ResourceNotFoundException();
             _dbContext.Channels.Remove(channel);
             await _dbContext.SaveChangesAsync();
         }
