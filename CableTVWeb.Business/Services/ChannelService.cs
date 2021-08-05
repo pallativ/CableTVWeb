@@ -52,14 +52,21 @@ namespace CableTVWeb.Business
             return await _dbContext.Channels.ToListAsync();
         }
 
+        private IEnumerable<Channel> GetBy(Expression<Func<Channel, bool>> predicate)
+        {
+            return _dbContext.Channels.Where(predicate);
+        }
+
         public Task<IEnumerable<Channel>> GetBy(Language language)
         {
-            throw new NotImplementedException();
+            var channels = GetBy((channel) => channel.Language == language);
+            return Task.FromResult(channels);
         }
 
         public Task<Channel> GetBy(string name)
         {
-            throw new NotImplementedException();
+            var channel = GetBy((channel) => channel.Name == name).FirstOrDefault();
+            return Task.FromResult(channel);
         }
 
         public Task<IEnumerable<Channel>> GetByUserId(string userId)
@@ -69,7 +76,8 @@ namespace CableTVWeb.Business
 
         public Task<Channel> Update(Channel channel)
         {
-            throw new NotImplementedException();
+            _dbContext.Channels.Update(channel);
+            return Task.FromResult(channel);
         }
     }
 }
